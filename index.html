@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio Kỹ thuật số — Nguyễn Tiến Thành — Nhập môn Công nghệ số — UET 2026">
+<title>Nguyễn Tiến Thành · Portfolio Kỹ thuật số</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* =========================================
+   DESIGN TOKENS
+========================================= */
+:root {
+  --bg:        #F6F5F1;
+  --surface:   #FFFFFF;
+  --sur2:      #F0EEE9;
+  --ink:       #1A1918;
+  --ink2:      #5C5A57;
+  --ink3:      #A8A6A2;
+  --red:       #B83232;
+  --red-bg:    rgba(184,50,50,0.07);
+  --green:     #15803D;
+  --amber:     #B45309;
+  --danger:    #DC2626;
+  --border:    rgba(26,25,24,0.09);
+  --shadow:    0 2px 16px rgba(0,0,0,0.07);
+  --shadow-sm: 0 1px 6px rgba(0,0,0,0.05);
+  --r:         12px;
+  --r-sm:      8px;
+  --f-dis: 'Cormorant Garamond', Georgia, serif;
+  --f-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* =========================================
+   RESET & BASE
+========================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+strong { color: var(--ink); font-weight: 600; }
+em { font-style: italic; }
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   NAVIGATION
+========================================= */
+nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 900;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  background: rgba(246,245,241,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--f-mono); font-size: 0.72rem;
+  letter-spacing: 0.16em; color: var(--ink);
+}
+.nav-links { display: flex; list-style: none; gap: 0.25rem; }
+.nav-links a {
+  font-family: var(--f-body); font-size: 0.83rem; font-weight: 500;
+  color: var(--ink2); padding: 0.4rem 0.875rem;
+  border-radius: 6px; transition: all 0.2s;
+}
+.nav-links a:hover, .nav-links a.on { color: var(--ink); background: rgba(26,25,24,0.07); }
+
+/* =========================================
+   HERO
+========================================= */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 100px 2.5rem 4rem;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 0.625rem;
+  margin-bottom: 1.75rem;
+}
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+.hero-label {
+  font-family: var(--f-mono); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--red);
+}
+.hero-name {
+  font-family: var(--f-dis);
+  font-size: clamp(2rem, 4.5vw, 6rem);
+  font-weight: 400; line-height: 0.92;
+  white-space: nowrap;
+  letter-spacing: -0.01em; color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+.hero-name em { font-style: italic; }
+
+.info-card {
+  display: inline-grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  padding: 1.375rem 2rem;
+  margin-bottom: 2.5rem;
+}
+.info-label {
+  font-family: var(--f-mono); font-size: 0.58rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 0.3rem;
+}
+.info-value {
+  font-family: var(--f-body); font-size: 0.85rem;
+  font-weight: 600; color: var(--ink);
+}
+
+.hero-btns { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.7rem 1.6rem;
+  font-family: var(--f-body); font-size: 0.83rem; font-weight: 500;
+  border-radius: 8px; cursor: pointer; border: none;
+  transition: all 0.2s ease; text-decoration: none;
+}
+.btn-dark { background: var(--ink); color: #fff; }
+.btn-dark:hover { background: #2C2B28; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+.btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--border); }
+.btn-ghost:hover { border-color: var(--ink3); background: var(--sur2); }
+
+/* =========================================
+   SECTION LAYOUT
+========================================= */
+.sec { padding: 5.5rem 2.5rem; }
+.sec.alt { background: var(--sur2); }
+
+.sec-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--f-mono); font-size: 0.64rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--red);
+  margin-bottom: 0.625rem;
+}
+.sec-eyebrow::before { content: ''; display: block; width: 1.25rem; height: 1px; background: var(--red); }
+.sec-title {
+  font-family: var(--f-dis);
+  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  font-weight: 400; font-style: italic;
+  color: var(--ink); line-height: 1.1; margin-bottom: 2.5rem;
+}
+
+/* =========================================
+   CARD COMPONENTS
+========================================= */
+.card {
+  background: var(--surface);
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+}
+.card-sm {
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+}
+.inner-bg {
+  background: var(--sur2);
+  border-radius: var(--r-sm);
+  padding: 1rem 1.25rem;
+}
+
+/* =========================================
+   GRID HELPERS
+========================================= */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+
+/* =========================================
+   SECTION 1 — GIỚI THIỆU
+========================================= */
+.goal-header {
+  font-family: var(--f-mono); font-size: 0.6rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 1.25rem;
+}
+.goal-row {
+  display: grid; grid-template-columns: 2.5rem 1fr;
+  gap: 0.875rem; padding: 1rem 0;
+  border-bottom: 1px solid var(--border); align-items: start;
+}
+.goal-row:last-child { border-bottom: none; padding-bottom: 0; }
+.goal-n {
+  font-family: var(--f-dis); font-size: 1.65rem;
+  font-weight: 600; color: rgba(26,25,24,0.13); line-height: 1;
+}
+.goal-t { font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+.goal-d { font-size: 0.81rem; color: var(--ink2); line-height: 1.7; }
+
+.intro-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.intro-list li {
+  font-size: 0.86rem; color: var(--ink2);
+  padding-left: 1.25rem; position: relative; line-height: 1.65;
+}
+.intro-list li::before { content: '›'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+
+/* =========================================
+   SECTION 2 — TASKS / TABS
+========================================= */
+.tabs-bar {
+  display: flex; gap: 0.375rem; flex-wrap: nowrap;
+  padding: 0.375rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.tab-btn {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.175rem;
+  padding: 0.625rem 1rem;
+  border: none; border-radius: var(--r-sm);
+  background: transparent; cursor: pointer;
+  transition: all 0.2s; white-space: nowrap;
+}
+.tab-n {
+  font-family: var(--f-dis); font-size: 1.1rem; font-weight: 600;
+  color: var(--ink3); transition: color 0.2s; line-height: 1;
+}
+.tab-l {
+  font-family: var(--f-body); font-size: 0.68rem; font-weight: 500;
+  color: var(--ink3); transition: color 0.2s;
+}
+.tab-btn:hover { background: var(--sur2); }
+.tab-btn:hover .tab-n, .tab-btn:hover .tab-l { color: var(--ink2); }
+.tab-btn.on { background: var(--ink); }
+.tab-btn.on .tab-n { color: rgba(255,255,255,0.3); }
+.tab-btn.on .tab-l { color: #fff; font-weight: 600; }
+
+.task-panel { display: none; }
+.task-panel.on { display: block; animation: fadeUp 0.3s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* Task header */
+.task-badge {
+  display: inline-flex;
+  padding: 0.3rem 0.9rem;
+  background: var(--red-bg); color: var(--red);
+  border: 1px solid rgba(184,50,50,0.15);
+  border-radius: 999px;
+  font-family: var(--f-mono); font-size: 0.62rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 0.875rem;
+}
+.task-title {
+  font-family: var(--f-dis); font-size: 1.875rem;
+  font-weight: 500; color: var(--ink); margin-bottom: 0.625rem;
+}
+.task-obj {
+  font-size: 0.875rem; color: var(--ink2); line-height: 1.8;
+  max-width: 680px; margin-bottom: 2rem;
+}
+
+/* Subsection label */
+.sub-label {
+  font-family: var(--f-mono); font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 0.75rem;
+}
+
+/* ── File Explorer (Bài 1) ── */
+.file-explorer {
+  background: #1E1E2E; border-radius: var(--r);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.fe-bar {
+  background: #2A2A3C; padding: 0.8rem 1.25rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.fe-dot { width: 10px; height: 10px; border-radius: 50%; }
+.fe-dot.r { background: #FF5F57; }
+.fe-dot.y { background: #FFBD2E; }
+.fe-dot.g { background: #27C840; }
+.fe-path {
+  margin-left: 0.375rem; font-family: var(--f-mono);
+  font-size: 0.66rem; color: rgba(255,255,255,0.3);
+}
+.fe-body {
+  padding: 1.25rem 1.5rem;
+  font-family: var(--f-mono); font-size: 0.76rem;
+  line-height: 1.95; white-space: pre;
+  overflow-x: auto; color: rgba(255,255,255,0.55);
+}
+.fe-dir  { color: #79B8FF; }
+.fe-file { color: rgba(255,255,255,0.5); }
+.fe-note { color: rgba(255,255,255,0.22); font-style: italic; }
+
+.nr-formula {
+  background: #1E1E2E; border-radius: var(--r-sm) var(--r-sm) 0 0;
+  padding: 1rem 1.25rem;
+  font-family: var(--f-mono); font-size: 0.8rem;
+  color: #79B8FF; letter-spacing: 0.03em;
+}
+.nr-body { padding: 1.25rem; }
+.nr-row {
+  display: grid; grid-template-columns: 10rem 1fr;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+.nr-row:last-child { border-bottom: none; }
+.nr-key { font-family: var(--f-mono); color: var(--red); font-size: 0.76rem; }
+.nr-val { color: var(--ink2); }
+
+/* ── Search (Bài 2) ── */
+.sq-card {
+  background: var(--surface); border-radius: var(--r);
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  overflow: hidden; margin-bottom: 0.875rem;
+}
+.sq-head {
+  padding: 0.75rem 1.25rem; background: var(--sur2);
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.sq-hl  { font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); }
+.sq-cnt { font-family: var(--f-mono); font-size: 0.6rem; color: var(--green); }
+.sq-body { padding: 1rem 1.25rem; }
+.sq-q {
+  font-family: var(--f-mono); font-size: 0.8rem; color: var(--ink);
+  background: var(--sur2); padding: 0.625rem 1rem;
+  border-radius: var(--r-sm); margin-bottom: 0.625rem; line-height: 1.7;
+}
+.sq-str { color: #2563EB; }
+.sq-op  { color: #7C3AED; font-weight: 600; }
+.sq-mod { color: var(--red); }
+.sq-ex  { font-size: 0.81rem; color: var(--ink2); }
+
+/* Styled table */
+.tbl-wrap { overflow-x: auto; border-radius: var(--r); box-shadow: var(--shadow-sm); }
+.tbl {
+  width: 100%; border-collapse: collapse;
+  background: var(--surface);
+}
+.tbl thead tr { background: var(--ink); }
+.tbl thead th {
+  padding: 0.875rem 1.25rem; text-align: left;
+  font-family: var(--f-mono); font-size: 0.6rem;
+  font-weight: 400; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.85);
+}
+.tbl thead th:first-child { border-radius: 12px 0 0 0; }
+.tbl thead th:last-child  { border-radius: 0 12px 0 0; }
+.tbl tbody td {
+  padding: 0.875rem 1.25rem; font-size: 0.82rem;
+  color: var(--ink2); border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.tbl tbody tr:last-child td { border-bottom: none; }
+.tbl tbody tr:hover td { background: #FAFAF8; }
+.td-hd { font-weight: 600; color: var(--ink); font-size: 0.8rem; }
+.ico-ok   { color: var(--green); }
+.ico-warn { color: var(--amber); }
+.ico-bad  { color: var(--danger); }
+.verdict-ok   { color: var(--green); font-weight: 600; }
+.verdict-warn { color: var(--amber); font-weight: 600; }
+
+/* ── Prompt compare (Bài 3) ── */
+.pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
+.pp {
+  border-radius: var(--r); overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+}
+.pp-head {
+  padding: 0.875rem 1.25rem;
+  display: flex; align-items: center; gap: 0.625rem;
+}
+.pp-dot { width: 8px; height: 8px; border-radius: 50%; }
+.pp-hl  { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.pp-bad .pp-head  { background: #FEF2F2; border-bottom: 1px solid #FECACA; }
+.pp-bad .pp-dot   { background: #EF4444; }
+.pp-bad .pp-hl    { color: #DC2626; }
+.pp-good .pp-head { background: #F0FDF4; border-bottom: 1px solid #BBF7D0; }
+.pp-good .pp-dot  { background: #22C55E; }
+.pp-good .pp-hl   { color: #15803D; }
+.pp-body { padding: 1.25rem; background: var(--surface); }
+.pp-q {
+  font-family: var(--f-mono); font-size: 0.76rem; line-height: 1.75;
+  color: var(--ink); background: var(--sur2);
+  padding: 0.875rem 1rem; border-radius: var(--r-sm);
+  margin-bottom: 1rem; white-space: pre-wrap;
+}
+.rces { display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 4px; }
+.rr { background: #EDE9FE; color: #7C3AED; }
+.rc { background: #DCFCE7; color: #15803D; }
+.re { background: #FEF3C7; color: #B45309; }
+.rs { background: #DBEAFE; color: #2563EB; }
+.pp-rl { font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.375rem; }
+.pp-bad .pp-rl  { color: #DC2626; }
+.pp-good .pp-rl { color: #15803D; }
+.pp-rt { font-size: 0.8rem; color: var(--ink2); line-height: 1.7; }
+
+/* ── Kanban (Bài 4) ── */
+.kb-board { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+.kb-col { }
+.kb-head {
+  font-family: var(--f-body); font-size: 0.78rem; font-weight: 600;
+  padding: 0 0 0.625rem; margin-bottom: 0.75rem;
+  border-bottom: 2px solid;
+}
+.kb-todo  .kb-head { color: var(--ink3); border-color: var(--border); }
+.kb-doing .kb-head { color: var(--amber); border-color: var(--amber); }
+.kb-done  .kb-head { color: var(--green); border-color: var(--green); }
+.kb-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 0.875rem 1rem;
+  margin-bottom: 0.625rem; box-shadow: var(--shadow-sm);
+}
+.kb-done .kb-card { background: #F0FDF4; border-color: #BBF7D0; }
+.kb-ct { font-size: 0.81rem; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
+.kb-done .kb-ct { color: var(--green); text-decoration: line-through; text-decoration-color: rgba(21,128,61,0.4); }
+.kb-cm { font-family: var(--f-mono); font-size: 0.6rem; color: var(--ink3); }
+
+/* ── Video card (Bài 5) ── */
+.vid-thumb {
+  border-radius: var(--r) var(--r) 0 0;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg,#0E0E1A,#1A1A2E 45%,#16213E);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.vid-thumb::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 40%, rgba(184,50,50,0.2), transparent 65%);
+}
+.vid-ttl {
+  font-family: var(--f-dis); font-size: 1.5rem; font-style: italic;
+  color: rgba(255,255,255,0.9); text-align: center;
+  padding: 2rem; z-index: 1; line-height: 1.35;
+}
+.yt-lbl {
+  position: absolute; bottom: 0.875rem; right: 0.875rem; z-index: 2;
+  background: #FF0000; color: #fff;
+  font-family: var(--f-mono); font-size: 0.58rem;
+  padding: 0.2rem 0.6rem; border-radius: 3px; letter-spacing: 0.06em;
+}
+.vid-info {
+  padding: 1.25rem; background: var(--surface);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--r) var(--r);
+}
+.vid-name { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.375rem; }
+.vid-meta { font-family: var(--f-mono); font-size: 0.63rem; color: var(--ink3); line-height: 1.7; }
+
+.proc-step {
+  display: grid; grid-template-columns: 3rem 1fr;
+  padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+}
+.proc-step:last-child { border-bottom: none; }
+.ps-n {
+  font-family: var(--f-dis); font-size: 2rem; font-weight: 600;
+  color: rgba(26,25,24,0.1); line-height: 1;
+}
+.ps-t { font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.ps-d { font-size: 0.81rem; color: var(--ink2); line-height: 1.75; }
+.ps-tools { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem; }
+.ps-tool {
+  font-family: var(--f-mono); font-size: 0.6rem;
+  padding: 0.15rem 0.6rem;
+  background: var(--sur2); color: var(--ink3);
+  border: 1px solid var(--border); border-radius: 4px;
+}
+
+/* ── Principles (Bài 6) ── */
+.pn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pn-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+}
+.pn-card.wide { grid-column: span 2; }
+.pn-num {
+  font-family: var(--f-dis); font-size: 2.25rem; font-weight: 600;
+  color: rgba(26,25,24,0.09); line-height: 1; margin-bottom: 0.75rem;
+}
+.pn-title {
+  font-size: 0.875rem; font-weight: 600; color: var(--ink);
+  margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.pn-title::before {
+  content: ''; display: block;
+  width: 3px; height: 14px;
+  background: var(--red); border-radius: 2px; flex-shrink: 0;
+}
+.pn-desc { font-size: 0.81rem; color: var(--ink2); line-height: 1.8; }
+.pn-ref {
+  margin-top: 0.75rem;
+  font-family: var(--f-mono); font-size: 0.58rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink3); display: flex; align-items: center; gap: 0.4rem;
+}
+.pn-ref::before { content: '→'; color: var(--red); }
+
+/* =========================================
+   SECTION 3 — TỔNG KẾT
+========================================= */
+.sk-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  display: grid; grid-template-columns: 3rem 1fr;
+  gap: 1rem; align-items: start; margin-bottom: 1rem;
+}
+.sk-n { font-family: var(--f-dis); font-size: 2.25rem; font-weight: 600; color: rgba(26,25,24,0.09); line-height: 1; }
+.sk-t { font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.sk-d { font-size: 0.81rem; color: var(--ink2); line-height: 1.75; }
+
+.ref-block h3 {
+  font-family: var(--f-dis); font-size: 1.5rem; font-style: italic;
+  color: var(--ink); margin-bottom: 1rem;
+}
+.ref-block p { font-size: 0.875rem; color: var(--ink2); line-height: 1.85; margin-bottom: 0.875rem; }
+
+/* =========================================
+   FOOTER
+========================================= */
+footer {
+  padding: 2rem 2.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  display: flex; justify-content: center; align-items: center;
+  flex-wrap: wrap; gap: 0.75rem;
+}
+footer span {
+  font-family: var(--f-mono); font-size: 0.63rem;
+  letter-spacing: 0.08em; color: var(--ink3);
+}
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+.rv { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.rv.show { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.32s; }
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 880px) {
+  .sec { padding: 4rem 1.5rem; }
+  #hero { padding: 90px 1.5rem 3.5rem; }
+  nav { padding: 0 1.5rem; }
+  .info-card { grid-template-columns: 1fr 1fr; gap: 1.25rem; padding: 1.25rem 1.5rem; }
+  .g2, .pp-grid, .pn-grid { grid-template-columns: 1fr; }
+  .pn-card.wide { grid-column: span 1; }
+  .kb-board { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+@media (max-width: 580px) {
+  .nav-links { display: none; }
+  .hero-name { font-size: clamp(2rem,8vw,3.5rem); white-space: normal; }
+  .info-card { grid-template-columns: 1fr 1fr; display: flex; flex-wrap: wrap; gap: 1rem; }
+  .tabs-bar { gap: 0.25rem; }
+  .tab-l { display: none; }
+  .tab-btn { min-width: 40px; }
+}
+
+/* ─── Panel Navigation ─── */
+.panel-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2rem 0 0.25rem; margin-top: 2.75rem;
+  border-top: 1px solid var(--border);
+}
+.panel-nav-btn {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.6rem 1.375rem;
+  font-family: var(--f-body); font-size: 0.82rem; font-weight: 500;
+  color: var(--ink2); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px;
+  cursor: pointer; transition: all 0.2s;
+}
+.panel-nav-btn:hover {
+  color: var(--ink); border-color: var(--ink3);
+  background: var(--sur2); transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.panel-nav-btn.invisible { opacity: 0; pointer-events: none; }
+.panel-nav-info {
+  font-family: var(--f-mono); font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3);
+}
+
+/* ─── Section Fade ─── */
+.sec-fade {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.sec-fade.in-view { opacity: 1; transform: none; }
+
+/* =========================================
+   WATER DROP SPLASH OVERLAY
+========================================= */
+#drop-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+}
+#drop-canvas { width: 100%; height: 100%; display: block; }
+
+/* =========================================
+   SCROLL PROGRESS BAR
+========================================= */
+#scroll-bar {
+  position: fixed; top: 0; left: 0; z-index: 1001;
+  height: 2px; width: 0%;
+  background: var(--red);
+  box-shadow: 0 0 6px rgba(184,50,50,0.5);
+  transition: width 0.08s linear;
+}
+
+
+/* =========================================
+   HERO FLOATING PARTICLES
+========================================= */
+#hero { position: relative; }
+.hero-bg-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(184,50,50,0.06);
+  pointer-events: none;
+  animation: ringPulse 6s ease-in-out infinite;
+}
+.hero-bg-ring:nth-child(1) { width: 420px; height: 420px; right: -60px; top: 20%; animation-delay: 0s; }
+.hero-bg-ring:nth-child(2) { width: 280px; height: 280px; right: 80px; top: 25%; animation-delay: 1.5s; opacity:.5; }
+.hero-bg-ring:nth-child(3) { width: 600px; height: 600px; right: -140px; top: 5%; animation-delay: 3s; opacity:.3; }
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.06); opacity: 0.2; }
+}
+.hero-particle {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: rgba(184,50,50,0.25);
+  animation: ptFloat var(--pd,8s) ease-in-out infinite var(--dl,0s);
+}
+@keyframes ptFloat {
+  0%,100% { transform: translate(0,0) scale(1);    opacity: .15; }
+  33%     { transform: translate(12px,-32px) scale(1.4); opacity: .65; }
+  66%     { transform: translate(-8px,-18px) scale(.85); opacity: .35; }
+}
+
+/* =========================================
+   HERO NAME SHIMMER
+========================================= */
+.hero-name { overflow: hidden; }
+.hero-name::after {
+  content: '';
+  position: absolute; top: 0; left: -160%;
+  width: 80%; height: 100%;
+  background: linear-gradient(105deg, transparent 25%, rgba(255,255,255,.5) 50%, transparent 75%);
+  animation: nameShimmer 5s ease 2.8s infinite;
+}
+@keyframes nameShimmer {
+  0%   { left: -160%; }
+  35%  { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* =========================================
+   3D CARD TILT
+========================================= */
+.card, .card-sm { will-change: transform; }
+
+/* =========================================
+   TAB RIPPLE
+========================================= */
+.tab-ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(26,25,24,0.1);
+  pointer-events: none; transform: scale(0);
+  animation: tabRipple .55s ease-out forwards;
+}
+@keyframes tabRipple {
+  to { transform: scale(5); opacity: 0; }
+}
+
+/* =========================================
+   NAV ENTRANCE — slides down after splash
+========================================= */
+nav {
+  animation: navDown .75s cubic-bezier(.22,1,.36,1) 1.7s both;
+}
+@keyframes navDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* =========================================
+   HERO CONTENT — staggered after splash
+========================================= */
+#hero .hero-eyebrow { transition-delay: 1.5s; }
+#hero .hero-name    { transition-delay: 1.7s; }
+#hero .info-card    { transition-delay: 1.9s; }
+#hero .hero-btns    { transition-delay: 2.1s; }
+
+/* =========================================
+   SECTION EYEBROW LINE DRAW
+========================================= */
+.sec-eyebrow::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .6s cubic-bezier(.22,1,.36,1) .35s;
+}
+.in-view .sec-eyebrow::before { transform: scaleX(1); }
+
+/* =========================================
+   KANBAN CARD FLOAT ON HOVER
+========================================= */
+.kb-card {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.kb-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   PRINCIPLE CARD — stagger reveal
+========================================= */
+.pn-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.pn-card.pn-show { opacity: 1; transform: none; }
+
+/* =========================================
+   FOOTER WAVE
+========================================= */
+footer {
+  position: relative; overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 200%, rgba(184,50,50,0.04), transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Product link block ── */
+.product-link-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.8rem 0 1.2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: 6px;
+  background: var(--sur);
+}
+.plb-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  white-space: nowrap;
+}
+.plb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 5px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.plb-link:hover { background: var(--red); transform: translateY(-1px); }
+.plb-icon { font-style: normal; font-size: 0.9rem; }
+
+/* =========================================
+   BACK TO TOP BUTTON
+========================================= */
+#back-top {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 800;
+  width: 42px; height: 42px;
+  background: var(--ink); color: #fff;
+  border: none; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .3s, transform .3s, background .2s;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+#back-top.visible { opacity: 1; transform: translateY(0); }
+#back-top:hover   { background: var(--red); }
+
+</style>
+</head>
+<body>
+
+<!-- Water-drop splash overlay -->
+<div id="drop-overlay"><canvas id="drop-canvas"></canvas></div>
+
+<!-- Scroll progress bar -->
+<div id="scroll-bar"></div>
+
+<!-- Back to top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Lên đầu trang">↑</button>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav>
+  <span class="nav-logo">NTT · Portfolio</span>
+  <ul class="nav-links">
+    <li><a href="#gioithieu">Giới thiệu</a></li>
+    <li><a href="#baitap">Dự án</a></li>
+    <li><a href="#tongket">Tổng kết</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+
+  <!-- Decorative background rings & particles -->
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <div class="hero-bg-ring"></div>
+    <div class="hero-bg-ring"></div>
+    <div class="hero-bg-ring"></div>
+    <div class="hero-particle" style="left:5%;top:22%;width:4px;height:4px;--pd:8.5s;--dl:0s;"></div>
+    <div class="hero-particle" style="left:12%;top:70%;width:3px;height:3px;--pd:7s;--dl:1.1s;"></div>
+    <div class="hero-particle" style="left:22%;top:42%;width:5px;height:5px;--pd:10s;--dl:2.3s;"></div>
+    <div class="hero-particle" style="left:35%;top:80%;width:3px;height:3px;--pd:6.5s;--dl:.7s;"></div>
+    <div class="hero-particle" style="left:48%;top:18%;width:4px;height:4px;--pd:9s;--dl:3s;"></div>
+    <div class="hero-particle" style="left:60%;top:55%;width:3px;height:3px;--pd:7.5s;--dl:1.8s;"></div>
+    <div class="hero-particle" style="left:72%;top:30%;width:5px;height:5px;--pd:11s;--dl:.4s;"></div>
+    <div class="hero-particle" style="left:82%;top:75%;width:3px;height:3px;--pd:8s;--dl:2.7s;"></div>
+    <div class="hero-particle" style="left:90%;top:45%;width:4px;height:4px;--pd:6s;--dl:1.5s;"></div>
+  </div>
+
+  <div class="hero-eyebrow rv">
+    <span class="hero-dot"></span>
+    <span class="hero-label">Portfolio Kỹ thuật số &nbsp;·&nbsp; Nhập môn Công nghệ số &nbsp;·&nbsp; 2026</span>
+  </div>
+
+  <h1 class="hero-name rv d1"><em>Nguyễn Tiến Thành.</em></h1>
+
+  <div class="info-card rv d2">
+    <div>
+      <div class="info-label">MSSV</div>
+      <div class="info-value">25024168</div>
+    </div>
+    <div>
+      <div class="info-label">Môn học</div>
+      <div class="info-value">Nhập môn Công nghệ số</div>
+    </div>
+    <div>
+      <div class="info-label">Trường</div>
+      <div class="info-value">UET – VNU Hanoi</div>
+    </div>
+    <div>
+      <div class="info-label">Năm học</div>
+      <div class="info-value">2026</div>
+    </div>
+  </div>
+
+  <div class="hero-btns rv d3">
+    <a href="#baitap" class="btn btn-dark">Xem dự án ↓</a>
+    <a href="#tongket" class="btn btn-ghost">Tổng kết →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 1 — GIỚI THIỆU
+══════════════════════════════════════ -->
+<section id="gioithieu" class="sec alt sec-fade">
+  <div class="sec-eyebrow rv">01 — Giới thiệu</div>
+  <h2 class="sec-title rv">Trang Giới thiệu</h2>
+
+  <div class="g2">
+    <!-- Cột trái -->
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+      <div class="card rv">
+        <h3 style="font-family:var(--f-dis);font-size:1.4rem;font-style:italic;color:var(--ink);margin-bottom:0.875rem;">Về bản thân</h3>
+        <p style="font-size:0.875rem;margin-bottom:0.75rem;">
+          Mình là <strong>Nguyễn Tiến Thành</strong>, sinh viên K70 ngành Khoa học dữ liệu tại
+          <strong>Trường Đại học Công nghệ – ĐHQG Hà Nội (UET)</strong>. Từ những dòng code đầu tiên trong C++,
+          mình nhanh chóng bị cuốn hút bởi cách mà thuật toán giải quyết các bài toán thực tiễn một cách thanh lịch.
+        </p>
+        <p style="font-size:0.875rem;">
+          Ngoài lập trình, mình quan tâm đến <strong>ứng dụng AI trong học tập</strong>,
+          khám phá công nghệ số và chia sẻ kiến thức với cộng đồng sinh viên qua video và blog cá nhân.
+          Mình tin rằng kỹ năng số tốt chính là nền tảng cho mọi hành trình trong ngành KHDL.
+        </p>
+      </div>
+
+      <div class="card rv d1">
+        <h3 style="font-family:var(--f-dis);font-size:1.4rem;font-style:italic;color:var(--ink);margin-bottom:0.875rem;">Mục tiêu học tập</h3>
+        <ul class="intro-list">
+          <li>Nắm vững các kỹ năng số nền tảng cần thiết cho sinh viên đại học hiện đại</li>
+          <li>Ứng dụng AI và công cụ số vào việc học tập và nghiên cứu một cách hiệu quả</li>
+          <li>Phát triển tư duy phản biện khi tiếp cận thông tin trong môi trường số</li>
+          <li>Xây dựng thói quen tổ chức dữ liệu và quản lý dự án có hệ thống, khoa học</li>
+          <li>Sử dụng AI có trách nhiệm, minh bạch và đúng chuẩn mực học thuật</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cột phải -->
+    <div class="card rv d2" style="align-self:start;">
+      <div class="goal-header">Mục tiêu của Portfolio này</div>
+
+      <div class="goal-row">
+        <div class="goal-n">1</div>
+        <div>
+          <div class="goal-t">Hệ thống hóa kiến thức</div>
+          <div class="goal-d">Tổng hợp và kết nối 6 bài tập riêng lẻ thành một sản phẩm thống nhất, thể hiện hành trình học tập xuyên suốt môn học.</div>
+        </div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-n">2</div>
+        <div>
+          <div class="goal-t">Thể hiện năng lực kỹ thuật số</div>
+          <div class="goal-d">Cung cấp minh chứng cụ thể cho từng kỹ năng đã học: quản lý tệp, tìm kiếm học thuật, viết prompt, hợp tác và sáng tạo nội dung với AI.</div>
+        </div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-n">3</div>
+        <div>
+          <div class="goal-t">Tạo tài sản cá nhân lâu dài</div>
+          <div class="goal-d">Xây dựng một website portfolio có thể chia sẻ, truy cập mọi nơi và tiếp tục cập nhật trong các năm học tiếp theo.</div>
+        </div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-n">4</div>
+        <div>
+          <div class="goal-t">Thực hành kỹ năng web thực tế</div>
+          <div class="goal-d">Trải nghiệm xây dựng trang web từ HTML & CSS — áp dụng trực tiếp kiến thức Công nghệ số vào sản phẩm thực.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 2 — DỰ ÁN
+══════════════════════════════════════ -->
+<section id="baitap" class="sec sec-fade">
+  <div class="sec-eyebrow rv">02 — Dự án</div>
+  <h2 class="sec-title rv">Trang Dự án</h2>
+
+  <!-- Tabs -->
+  <div class="tabs-bar rv d1">
+    <button class="tab-btn on" onclick="sw(0)"><span class="tab-n">1</span><span class="tab-l">Quản lý Tệp</span></button>
+    <button class="tab-btn"    onclick="sw(1)"><span class="tab-n">2</span><span class="tab-l">Tìm kiếm</span></button>
+    <button class="tab-btn"    onclick="sw(2)"><span class="tab-n">3</span><span class="tab-l">Viết Prompt</span></button>
+    <button class="tab-btn"    onclick="sw(3)"><span class="tab-n">4</span><span class="tab-l">Hợp tác</span></button>
+    <button class="tab-btn"    onclick="sw(4)"><span class="tab-n">5</span><span class="tab-l">Nội dung AI</span></button>
+    <button class="tab-btn"    onclick="sw(5)"><span class="tab-n">6</span><span class="tab-l">AI Có TN</span></button>
+  </div>
+
+  <!-- ═══════ BÀI 1 ═══════ -->
+  <div class="task-panel on" id="tp0">
+    <div class="task-badge">Bài 1 · Bài tập 1 · Mục 1.4</div>
+    <h3 class="task-title">Thao tác cơ bản với Tệp tin và Thư mục</h3>
+    <p class="task-obj">Xây dựng cấu trúc thư mục khoa học và bộ quy tắc đặt tên tệp nhất quán để quản lý tài liệu học tập trong suốt quá trình học đại học.</p>
+
+    <div class="g2">
+      <div>
+        <p class="sub-label">Cấu trúc thư mục đã thiết lập</p>
+        <div class="file-explorer">
+          <div class="fe-bar">
+            <div class="fe-dot r"></div>
+            <div class="fe-dot y"></div>
+            <div class="fe-dot g"></div>
+            <span class="fe-path">Documents / UET_K70_25024168</span>
+          </div>
+          <div class="fe-body"><span class="fe-dir">📁 UET_K70_25024168_NguyenTienThanh</span>
+├── <span class="fe-dir">📁 01_NhapMonCongNgheSo</span>
+│   ├── <span class="fe-dir">📁 BaiTap</span>
+│   │   ├── <span class="fe-dir">📁 Tuan01</span>
+│   │   ├── <span class="fe-dir">📁 Tuan02</span>
+│   │   ├── <span class="fe-dir">📁 Tuan03</span>
+│   │   ├── <span class="fe-dir">📁 Tuan04</span>
+│   │   ├── <span class="fe-dir">📁 Tuan05</span>
+│   │   ├── <span class="fe-dir">📁 Tuan06</span>
+│   │   └── <span class="fe-dir">📁 Tuan07</span>
+│   └── <span class="fe-dir">📁 Portfolio</span>
+│       └── <span class="fe-file">📄 index.html</span>
+├── <span class="fe-dir">📁 02_GiaiTich2_MAT1051</span>
+├── <span class="fe-dir">📁 03_VatLyDaiCuong1</span>
+├── <span class="fe-dir">📁 04_CTDLvaThuatToan</span>
+└── <span class="fe-dir">📁 05_PhuongPhapLapTrinh</span>
+    ├── <span class="fe-dir">📁 BaiTap</span>
+    └── <span class="fe-dir">📁 DoAn</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div>
+          <p class="sub-label">Quy tắc đặt tên tệp</p>
+          <div class="card" style="padding:0;overflow:hidden;">
+            <div class="nr-formula">[MonHoc]_[Loai][SoTT]_[TenTat]_[YYYYMMDD].[ext]</div>
+            <div class="nr-body">
+              <div class="nr-row"><span class="nr-key">[MonHoc]</span><span class="nr-val">NhapMonCNSo, GiaiTich2, VatLyDC1…</span></div>
+              <div class="nr-row"><span class="nr-key">[Loai][SoTT]</span><span class="nr-val">BT01, BG03, DA01 (2 chữ số)</span></div>
+              <div class="nr-row"><span class="nr-key">[TenTat]</span><span class="nr-val">NTT — Nguyễn Tiến Thành</span></div>
+              <div class="nr-row"><span class="nr-key">[YYYYMMDD]</span><span class="nr-val">Ngày hoàn thành (VD: 20260310)</span></div>
+              <div class="nr-row"><span class="nr-key">[ext]</span><span class="nr-val">docx, pdf, html, mp4, cpp…</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-sm">
+          <p class="sub-label" style="margin-bottom:0.5rem;">Ví dụ tên tệp thực tế</p>
+          <div style="font-family:var(--f-mono);font-size:0.76rem;color:#2563EB;line-height:2.2;">
+            NhapMonCNSo_BT01_NTT_20260310.docx<br>
+            GiaiTich2_BT03_NTT_20250402.pdf<br>
+            PhuongPhapLP_DA01_NTT_20250501.zip
+          </div>
+        </div>
+
+        <div style="border-left:3px solid var(--red);padding:1rem 1.25rem;background:var(--red-bg);border-radius:var(--r-sm);">
+          <p style="font-size:0.8rem;font-weight:600;color:var(--ink);margin-bottom:0.375rem;">Lý do thiết kế</p>
+          <p style="font-size:0.8rem;color:var(--ink2);line-height:1.75;">Tên môn học đứng đầu → tìm nhanh theo context. Số thứ tự 2 chữ số → sort đúng thứ tự (01 trước 10). Ngày tháng cuối → nhận biết phiên bản mới nhất. Viết tắt tên → tránh nhầm khi gộp file của cả nhóm.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Sản phẩm cuối ── -->
+    <div class="product-link-block">
+      <div class="plb-label">Sản phẩm cuối</div>
+      <a href="https://drive.google.com/file/d/1afnZUX8-wOuy0TnRibr_SMTRQn5jVtTD/view?usp=sharing" class="plb-link" target="_blank" rel="noopener">
+        <span class="plb-icon">↗</span>
+        <span class="plb-text">Xem sản phẩm</span>
+      </a>
+    </div>
+
+    <div class="panel-nav">
+      <button class="panel-nav-btn invisible">← Bài trước</button>
+      <span class="panel-nav-info">Bài 1 / 6</span>
+      <button class="panel-nav-btn" onclick="sw(1)">Bài 2 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ BÀI 2 ═══════ -->
+  <div class="task-panel" id="tp1">
+    <div class="task-badge">Bài 2 · Bài tập 2 · Mục 2.4</div>
+    <h3 class="task-title">Tìm kiếm và Đánh giá Thông tin Học thuật</h3>
+    <p class="task-obj">Sử dụng các toán tử tìm kiếm nâng cao để tìm tài liệu học thuật chất lượng, và đánh giá độ tin cậy của nguồn thông tin theo tiêu chí CRAAP.</p>
+
+    <div class="inner-bg" style="margin-bottom:1.5rem;">
+      <p class="sub-label" style="margin-bottom:0.25rem;">Chủ đề nghiên cứu</p>
+      <p style="font-size:0.875rem;font-weight:600;color:var(--ink);">Ứng dụng Trí tuệ nhân tạo trong giáo dục đại học tại Việt Nam</p>
+    </div>
+
+    <p class="sub-label">Các truy vấn tìm kiếm nâng cao đã thực hiện</p>
+
+    <div class="sq-card">
+      <div class="sq-head"><span class="sq-hl">Truy vấn 1 — Dấu ngoặc kép + site: + filetype:</span><span class="sq-cnt">~1.240 kết quả</span></div>
+      <div class="sq-body">
+        <div class="sq-q"><span class="sq-str">"trí tuệ nhân tạo"</span> <span class="sq-mod">site:</span>.edu.vn <span class="sq-mod">filetype:</span>pdf</div>
+        <p class="sq-ex">→ Tìm file PDF từ domain giáo dục (.edu.vn) — đảm bảo nguồn từ cơ sở học thuật uy tín</p>
+      </div>
+    </div>
+
+    <div class="sq-card">
+      <div class="sq-head"><span class="sq-hl">Truy vấn 2 — AND + dấu trừ (-)</span><span class="sq-cnt">~890 kết quả</span></div>
+      <div class="sq-body">
+        <div class="sq-q"><span class="sq-str">"AI in education"</span> <span class="sq-op">AND</span> <span class="sq-str">"higher education"</span> <span class="sq-op">-</span><span class="sq-str">"high school"</span> <span class="sq-mod">site:</span>arxiv.org</div>
+        <p class="sq-ex">→ Kết hợp hai cụm từ bắt buộc, loại bỏ kết quả giáo dục phổ thông, chỉ lấy từ arXiv</p>
+      </div>
+    </div>
+
+    <div class="sq-card">
+      <div class="sq-head"><span class="sq-hl">Truy vấn 3 — OR + intitle:</span><span class="sq-cnt">~2.100 kết quả</span></div>
+      <div class="sq-body">
+        <div class="sq-q"><span class="sq-str">"ChatGPT"</span> <span class="sq-op">OR</span> <span class="sq-str">"Claude AI"</span> <span class="sq-mod">intitle:</span>nghiên cứu Vietnam 2024</div>
+        <p class="sq-ex">→ Mở rộng tìm kiếm nhiều công cụ AI, lọc bài có "nghiên cứu" trong tiêu đề, về Việt Nam 2024</p>
+      </div>
+    </div>
+
+    <div class="sq-card" style="margin-bottom:2rem;">
+      <div class="sq-head"><span class="sq-hl">Truy vấn 4 — Kết hợp nhiều toán tử</span><span class="sq-cnt">~340 kết quả</span></div>
+      <div class="sq-body">
+        <div class="sq-q"><span class="sq-str">"prompt engineering"</span> <span class="sq-mod">intitle:</span>guide <span class="sq-op">OR</span> <span class="sq-mod">intitle:</span>tutorial <span class="sq-mod">filetype:</span>pdf 2024</div>
+        <p class="sq-ex">→ Tìm hướng dẫn viết prompt dạng PDF, tiêu đề chứa "guide" hoặc "tutorial", năm 2024</p>
+      </div>
+    </div>
+
+    <p class="sub-label">Bảng đánh giá nguồn thông tin (Tiêu chí CRAAP)</p>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr>
+          <th>Tiêu chí</th>
+          <th>IEEE Xplore (2024)</th>
+          <th>Cổng KHCN VNU (.edu.vn)</th>
+          <th>Wikipedia</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="td-hd">Currency — Cập nhật</td><td><span class="ico-ok">✓</span> Công bố 2024</td><td><span class="ico-ok">✓</span> Cập nhật 2023–2024</td><td><span class="ico-warn">⚠</span> Không rõ ngày</td></tr>
+          <tr><td class="td-hd">Relevance — Phù hợp</td><td><span class="ico-ok">✓</span> Rất cao</td><td><span class="ico-ok">✓</span> Cao</td><td><span class="ico-warn">⚠</span> Trung bình</td></tr>
+          <tr><td class="td-hd">Authority — Uy tín</td><td><span class="ico-ok">✓</span> Peer-reviewed</td><td><span class="ico-ok">✓</span> Cơ quan nhà nước</td><td><span class="ico-bad">✗</span> Cộng đồng mở</td></tr>
+          <tr><td class="td-hd">Accuracy — Chính xác</td><td><span class="ico-ok">✓</span> Có DOI, tài liệu tham khảo</td><td><span class="ico-ok">✓</span> Nguồn dẫn rõ ràng</td><td><span class="ico-warn">⚠</span> Có thể sai</td></tr>
+          <tr><td class="td-hd">Purpose — Mục đích</td><td><span class="ico-ok">✓</span> Nghiên cứu học thuật</td><td><span class="ico-ok">✓</span> Thông tin, chính sách</td><td><span class="ico-warn">⚠</span> Hỗn hợp</td></tr>
+          <tr style="background:#FAFAF8;"><td class="td-hd">→ Kết luận</td><td class="verdict-ok">Rất tin cậy ✓</td><td class="verdict-ok">Đáng tin cậy ✓</td><td class="verdict-warn">Cần kiểm chứng ⚠</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel-nav">
+      <button class="panel-nav-btn" onclick="sw(0)">← Bài 1</button>
+      <span class="panel-nav-info">Bài 2 / 6</span>
+      <button class="panel-nav-btn" onclick="sw(2)">Bài 3 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ BÀI 3 ═══════ -->
+  <div class="task-panel" id="tp2">
+    <div class="task-badge">Bài 3 · Bài tập 2 · Mục 3.4</div>
+    <h3 class="task-title">Viết Prompt Hiệu Quả cho Tác vụ Học tập</h3>
+    <p class="task-obj">So sánh prompt thô và prompt được cải tiến theo Framework RCES (Vai trò – Bối cảnh – Yêu cầu – Sản phẩm) để thấy rõ sự khác biệt về chất lượng output của AI.</p>
+
+    <div class="inner-bg" style="margin-bottom:1.5rem;">
+      <p class="sub-label" style="margin-bottom:0.25rem;">Tác vụ học tập được chọn</p>
+      <p style="font-size:0.875rem;font-weight:600;color:var(--ink);">Yêu cầu AI giải thích "Mạng nơ-ron nhân tạo (Artificial Neural Network)" cho sinh viên năm nhất ngành KHDL</p>
+    </div>
+
+    <div class="pp-grid">
+      <!-- Prompt thô -->
+      <div class="pp pp-bad">
+        <div class="pp-head"><div class="pp-dot"></div><span class="pp-hl">Prompt thô — ban đầu</span></div>
+        <div class="pp-body">
+          <div class="pp-q">Mạng nơ-ron nhân tạo là gì?</div>
+          <p class="pp-rl">Vấn đề của prompt này:</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.35rem;font-size:0.8rem;color:var(--ink2);margin-bottom:1rem;">
+            <li style="display:flex;gap:0.5rem;"><span style="color:#EF4444;">✗</span>Quá ngắn, không có ngữ cảnh</li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:#EF4444;">✗</span>Không xác định trình độ người hỏi</li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:#EF4444;">✗</span>Không yêu cầu định dạng output</li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:#EF4444;">✗</span>Không chỉ định ngôn ngữ hay độ dài</li>
+          </ul>
+          <p class="pp-rl">Kết quả nhận được:</p>
+          <p class="pp-rt">Câu trả lời ~800 từ, đầy thuật ngữ kỹ thuật (backpropagation, perceptron…), không có ví dụ thực tế, không có bảng minh họa. Rất khó hiểu với sinh viên năm nhất.</p>
+        </div>
+      </div>
+
+      <!-- Prompt RCES -->
+      <div class="pp pp-good">
+        <div class="pp-head"><div class="pp-dot"></div><span class="pp-hl">Prompt RCES — cải tiến</span></div>
+        <div class="pp-body">
+          <div class="pp-q"><span class="rces rr">[Vai trò]</span> Bạn là giảng viên Nhập môn AI tại UET, giảng dạy sinh viên năm nhất ngành KHDL.
+
+<span class="rces rc">[Bối cảnh]</span> Tôi là sinh viên K69, vừa học bài "Tổng quan về AI". Có nền tảng toán cơ bản nhưng chưa học lập trình học máy.
+
+<span class="rces re">[Yêu cầu]</span>
+1. Định nghĩa đơn giản (tối đa 2 câu)
+2. Bảng so sánh não người vs ANN (3-4 đặc điểm)
+3. Hai ví dụ ứng dụng thực tế tại Việt Nam
+4. Một hạn chế lớn nhất của ANN
+
+<span class="rces rs">[Sản phẩm]</span> Tiếng Việt · ~300 từ · có bảng và bullet points</div>
+          <p class="pp-rl">Kết quả nhận được:</p>
+          <p class="pp-rt">~310 từ, có bảng so sánh rõ ràng, ví dụ thực tế (VinAI nhận diện khuôn mặt, Grab dự đoán giá xe), định dạng đúng yêu cầu. Dùng được ngay không cần chỉnh sửa.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sub-label">So sánh kết quả</p>
+    <div class="tbl-wrap" style="margin-bottom:1.5rem;">
+      <table class="tbl">
+        <thead><tr><th>Tiêu chí so sánh</th><th>Prompt thô</th><th>Prompt RCES</th></tr></thead>
+        <tbody>
+          <tr><td class="td-hd">Độ dài output</td><td style="color:var(--danger);">~800 từ — quá dài</td><td style="color:var(--green);">~310 từ — vừa đủ</td></tr>
+          <tr><td class="td-hd">Phù hợp trình độ SV</td><td style="color:var(--danger);">Không</td><td style="color:var(--green);">Tối ưu cho SV năm nhất</td></tr>
+          <tr><td class="td-hd">Ví dụ thực tế VN</td><td style="color:var(--danger);">Không có</td><td style="color:var(--green);">VinAI, Grab, Zalo</td></tr>
+          <tr><td class="td-hd">Định dạng output</td><td style="color:var(--danger);">Đoạn văn liên tục</td><td style="color:var(--green);">Bảng + bullet + tiêu đề</td></tr>
+          <tr><td class="td-hd">Tính hữu ích ngay</td><td style="color:var(--danger);">Thấp</td><td style="color:var(--green);">Cao — dùng được ngay</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="border-left:3px solid var(--red);padding:1rem 1.25rem;background:var(--red-bg);border-radius:var(--r-sm);">
+      <p style="font-size:0.875rem;font-weight:600;color:var(--ink);margin-bottom:0.375rem;">Phân tích</p>
+      <p style="font-size:0.81rem;color:var(--ink2);line-height:1.8;">Framework RCES hiệu quả vì cung cấp đủ ngữ cảnh để AI hiểu <em>chính xác</em> đối tượng, mục tiêu và định dạng mong muốn. Thay vì AI phải đoán và trả lời "một cỡ cho tất cả", prompt RCES tạo ra output <strong>cá nhân hóa, có cấu trúc và thực sự hữu ích</strong>. Kỹ năng này không chỉ áp dụng cho AI — nó còn giúp giao tiếp rõ ràng hơn với giáo viên và bạn nhóm.</p>
+    </div>
+    <div class="panel-nav">
+      <button class="panel-nav-btn" onclick="sw(1)">← Bài 2</button>
+      <span class="panel-nav-info">Bài 3 / 6</span>
+      <button class="panel-nav-btn" onclick="sw(3)">Bài 4 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ BÀI 4 ═══════ -->
+  <div class="task-panel" id="tp3">
+    <div class="task-badge">Bài 4 · Bài tập 3 · Mục 4.4</div>
+    <h3 class="task-title">Sử dụng Công cụ Hợp tác Trực tuyến</h3>
+    <p class="task-obj">Minh chứng việc sử dụng các công cụ quản lý dự án và hợp tác trực tuyến trong quá trình thực hiện dự án nhóm "Báo cáo Văn bản về AI Trong Giáo Dục".</p>
+
+    <div class="g2" style="margin-bottom:1.5rem;">
+      <div class="card">
+        <p class="sub-label" style="margin-bottom:0.75rem;">Thông tin dự án nhóm</p>
+        <p style="font-family:var(--f-dis);font-size:1.35rem;font-style:italic;color:var(--ink);margin-bottom:1rem;">Ứng Dụng AI Trong Giáo Dục Đại Học</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="display:grid;grid-template-columns:8rem 1fr;font-size:0.82rem;">
+            <span style="font-family:var(--f-mono);font-size:0.66rem;color:var(--ink3);">Sản phẩm</span>
+            <span style="color:var(--ink);">Báo cáo văn bản nhóm (10–12 trang)</span>
+          </div>
+          <div style="display:grid;grid-template-columns:8rem 1fr;font-size:0.82rem;">
+            <span style="font-family:var(--f-mono);font-size:0.66rem;color:var(--ink3);">Số thành viên</span>
+            <span style="color:var(--ink);">3 người</span>
+          </div>
+          <div style="display:grid;grid-template-columns:8rem 1fr;font-size:0.82rem;">
+            <span style="font-family:var(--f-mono);font-size:0.66rem;color:var(--ink3);">Thời gian</span>
+            <span style="color:var(--ink);">2 tuần</span>
+          </div>
+          <div style="display:grid;grid-template-columns:8rem 1fr;font-size:0.82rem;">
+            <span style="font-family:var(--f-mono);font-size:0.66rem;color:var(--ink3);">Môn học</span>
+            <span style="color:var(--ink);">Nhập môn Công nghệ số</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="sub-label" style="margin-bottom:0.75rem;">Phân công công việc</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+          <thead><tr style="border-bottom:2px solid var(--border);">
+            <th style="padding:0.4rem 0;text-align:left;font-family:var(--f-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">Thành viên</th>
+            <th style="padding:0.4rem 0;text-align:left;font-family:var(--f-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">Nhiệm vụ</th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:0.625rem 0;font-weight:600;color:var(--red);">Nguyễn Tiến Thành</td>
+              <td style="padding:0.625rem 0;color:var(--ink2);">Nghiên cứu nội dung, viết nội dung chính, biên tập tổng thể</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:0.625rem 0;font-weight:500;color:var(--ink);">Lê Minh Quân</td>
+              <td style="padding:0.625rem 0;color:var(--ink2);">Tổng hợp tài liệu tham khảo, thiết kế bố cục và bảng biểu</td>
+            </tr>
+            <tr>
+              <td style="padding:0.625rem 0;font-weight:500;color:var(--ink);">Phạm Thị Thu Hà</td>
+              <td style="padding:0.625rem 0;color:var(--ink2);">Kiểm tra, chỉnh sửa lỗi, định dạng và nộp bài</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="sub-label">Bảng quản lý tiến độ (Kanban)</p>
+    <div class="kb-board" style="margin-bottom:1.5rem;">
+      <div class="kb-col kb-todo">
+        <div class="kb-head">📋 Cần làm</div>
+        <div class="kb-card">
+          <div class="kb-ct">Duyệt & phê duyệt bản cuối</div>
+          <div class="kb-cm">→ Toàn nhóm · Deadline: 20/04</div>
+        </div>
+      </div>
+      <div class="kb-col kb-doing">
+        <div class="kb-head">⚡ Đang thực hiện</div>
+        <div class="kb-card">
+          <div class="kb-ct">Định dạng chuẩn và xuất PDF nộp bài</div>
+          <div class="kb-cm">→ Thu Hà · Hoàn thành 80%</div>
+        </div>
+      </div>
+      <div class="kb-col kb-done">
+        <div class="kb-head">✅ Hoàn thành</div>
+        <div class="kb-card"><div class="kb-ct">Lên ý tưởng & dàn ý báo cáo</div><div class="kb-cm">Tiến Thành · 01/04</div></div>
+        <div class="kb-card"><div class="kb-ct">Tổng hợp tài liệu tham khảo</div><div class="kb-cm">Minh Quân · 04/04</div></div>
+        <div class="kb-card"><div class="kb-ct">Viết nội dung chính (chương 1–3)</div><div class="kb-cm">Tiến Thành · 08/04</div></div>
+        <div class="kb-card"><div class="kb-ct">Thiết kế bố cục & bảng biểu</div><div class="kb-cm">Minh Quân · 10/04</div></div>
+        <div class="kb-card"><div class="kb-ct">Kiểm tra lỗi và chỉnh sửa văn phong</div><div class="kb-cm">Thu Hà · 15/04</div></div>
+      </div>
+    </div>
+
+    <p class="sub-label">Công cụ hợp tác đã sử dụng</p>
+    <div class="g4">
+      <div class="card-sm" style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="width:36px;height:36px;background:#4285F4;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">📝</div>
+        <div style="font-weight:600;font-size:0.82rem;">Google Docs</div>
+        <div style="font-size:0.78rem;color:var(--ink2);">Soạn thảo và chỉnh sửa báo cáo cộng tác real-time</div>
+      </div>
+      <div class="card-sm" style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="width:36px;height:36px;background:#0F9D58;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">📊</div>
+        <div style="font-weight:600;font-size:0.82rem;">Google Sheets</div>
+        <div style="font-size:0.78rem;color:var(--ink2);">Theo dõi tiến độ, phân công và deadline từng phần</div>
+      </div>
+      <div class="card-sm" style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="width:36px;height:36px;background:#2196F3;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">💾</div>
+        <div style="font-weight:600;font-size:0.82rem;">Google Drive</div>
+        <div style="font-size:0.78rem;color:var(--ink2);">Lưu trữ và chia sẻ toàn bộ tài liệu, bản nháp</div>
+      </div>
+      <div class="card-sm" style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="width:36px;height:36px;background:#34A853;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">📹</div>
+        <div style="font-weight:600;font-size:0.82rem;">Google Meet</div>
+        <div style="font-size:0.78rem;color:var(--ink2);">Họp nhóm trực tuyến (3 buổi) để thống nhất nội dung</div>
+      </div>
+    </div>
+    <!-- ── Sản phẩm cuối ── -->
+    <div class="product-link-block">
+      <div class="plb-label">Sản phẩm cuối</div>
+      <a href="https://docs.google.com/document/d/1qEGAb1V9Ja5xEAir3U6a9VraOavgr2RE/edit?usp=drive_link&ouid=107321358617148181288&rtpof=true&sd=true" class="plb-link" target="_blank" rel="noopener">
+        <span class="plb-icon">↗</span>
+        <span class="plb-text">Xem sản phẩm</span>
+      </a>
+    </div>
+
+    <div class="panel-nav">
+      <button class="panel-nav-btn" onclick="sw(2)">← Bài 3</button>
+      <span class="panel-nav-info">Bài 4 / 6</span>
+      <button class="panel-nav-btn" onclick="sw(4)">Bài 5 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ BÀI 5 ═══════ -->
+  <div class="task-panel" id="tp4">
+    <div class="task-badge">Bài 5 · Bài tập 2 · Mục 5.4</div>
+    <h3 class="task-title">Sử dụng AI Tạo sinh để Hỗ trợ Sáng tạo Nội dung</h3>
+    <p class="task-obj">Sử dụng các công cụ AI tạo sinh để sản xuất một sản phẩm nội dung số hoàn chỉnh — báo cáo văn bản học thuật về ứng dụng AI trong giáo dục, từ ý tưởng đến bản hoàn chỉnh nộp bài.</p>
+
+    <!-- ── Top layout: Document mockup + Tools ── -->
+    <div class="g2" style="margin-bottom:2rem;align-items:start;">
+
+      <!-- Left: Refined document cover mockup -->
+      <div>
+        <p class="sub-label" style="margin-bottom:0.875rem;">Sản phẩm nhóm</p>
+        <!-- Paper stack effect -->
+        <div style="position:relative;">
+          <!-- Shadow pages behind -->
+          <div style="position:absolute;top:9px;left:9px;right:-9px;bottom:-9px;background:#DDDBD5;border-radius:var(--r);"></div>
+          <div style="position:absolute;top:5px;left:5px;right:-5px;bottom:-5px;background:#E8E6E0;border-radius:var(--r);border:1px solid rgba(0,0,0,0.06);"></div>
+          <!-- Main document card -->
+          <div style="position:relative;background:#FAFAF8;border-radius:var(--r);border:1px solid var(--border);box-shadow:0 6px 24px rgba(0,0,0,0.10);overflow:hidden;">
+            <!-- Red accent top bar -->
+            <div style="height:4px;background:linear-gradient(90deg,var(--red) 0%,#C03030 55%,#992020 100%);"></div>
+            <!-- Institution header -->
+            <div style="padding:0.875rem 1.5rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:#FDFCFA;">
+              <div style="font-family:var(--f-mono);font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink3);">UET · VNU Hanoi</div>
+              <div style="font-family:var(--f-mono);font-size:0.56rem;letter-spacing:0.1em;color:var(--ink3);">Nhập môn Công nghệ số</div>
+            </div>
+            <!-- Title block -->
+            <div style="padding:1.625rem 1.75rem 1.375rem;border-bottom:1px solid var(--border);text-align:center;">
+              <div style="display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.875rem;">
+                <div style="height:1px;width:1.5rem;background:var(--red);"></div>
+                <span style="font-family:var(--f-mono);font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);">Báo cáo nhóm</span>
+                <div style="height:1px;width:1.5rem;background:var(--red);"></div>
+              </div>
+              <div style="font-family:var(--f-dis);font-size:1.625rem;font-weight:400;color:var(--ink);line-height:1.25;margin-bottom:1rem;">Ứng Dụng AI<br><em style="font-style:italic;">Trong Giáo Dục<br>Đại Học</em></div>
+              <div style="width:2.5rem;height:2px;background:var(--red);border-radius:1px;margin:0 auto;"></div>
+            </div>
+            <!-- Authors -->
+            <div style="padding:0.875rem 1.5rem;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--f-mono);font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.5rem;">Nhóm thực hiện</div>
+              <div style="font-size:0.8rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;">Nguyễn Tiến Thành <span style="font-family:var(--f-mono);font-size:0.58rem;font-weight:400;color:var(--red);">· 25024168</span></div>
+              
+            </div>
+            <!-- Simulated content lines -->
+            <div style="padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.45rem;">
+              <div style="height:5px;background:rgba(26,25,24,0.08);border-radius:3px;width:94%;"></div>
+              <div style="height:5px;background:rgba(26,25,24,0.08);border-radius:3px;width:100%;"></div>
+              <div style="height:5px;background:rgba(26,25,24,0.08);border-radius:3px;width:82%;"></div>
+              <div style="height:5px;background:rgba(26,25,24,0.06);border-radius:3px;width:97%;margin-top:0.2rem;"></div>
+              <div style="height:5px;background:rgba(26,25,24,0.06);border-radius:3px;width:70%;"></div>
+            </div>
+            <!-- Stats footer -->
+            <div style="padding:0.875rem 1.5rem;background:var(--sur2);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;gap:1.5rem;align-items:center;">
+                <div style="text-align:center;">
+                  <div style="font-family:var(--f-dis);font-size:1.375rem;font-weight:600;color:var(--ink);line-height:1;">11</div>
+                  <div style="font-family:var(--f-mono);font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-top:0.15rem;">Trang</div>
+                </div>
+                <div style="width:1px;height:1.75rem;background:var(--border);"></div>
+                <div style="text-align:center;">
+                  <div style="font-family:var(--f-dis);font-size:1.375rem;font-weight:600;color:var(--ink);line-height:1;">6</div>
+                  <div style="font-family:var(--f-mono);font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-top:0.15rem;">Chương</div>
+                </div>
+                <div style="width:1px;height:1.75rem;background:var(--border);"></div>
+                <div style="text-align:center;">
+                  <div style="font-family:var(--f-dis);font-size:1.375rem;font-weight:600;color:var(--ink);line-height:1;">5</div>
+                  <div style="font-family:var(--f-mono);font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-top:0.15rem;">Hình</div>
+                </div>
+              </div>
+              <div style="font-family:var(--f-mono);font-size:0.57rem;letter-spacing:0.08em;color:var(--ink3);">04 · 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: AI Tools with rich cards -->
+      <div>
+        <p class="sub-label" style="margin-bottom:0.875rem;">Công cụ AI đã sử dụng</p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+
+          <!-- Claude AI -->
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.125rem 1.25rem;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:2.75rem 1fr auto;gap:0.875rem;align-items:center;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
+            <div style="width:2.75rem;height:2.75rem;background:#EDE9FE;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:0.62rem;font-weight:700;color:#7C3AED;letter-spacing:0.04em;flex-shrink:0;">CL</div>
+            <div>
+              <div style="font-size:0.83rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;">Claude AI</div>
+              <div style="font-size:0.76rem;color:var(--ink2);line-height:1.55;">Brainstorm ý tưởng, viết dàn ý và nội dung chính</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;padding-left:0.5rem;">
+              <div style="font-family:var(--f-dis);font-size:1.5rem;font-weight:600;color:rgba(124,58,237,0.18);line-height:1;">18</div>
+              <div style="font-family:var(--f-mono);font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">prompts</div>
+            </div>
+          </div>
+
+          <!-- Canva AI -->
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.125rem 1.25rem;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:2.75rem 1fr auto;gap:0.875rem;align-items:center;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
+            <div style="width:2.75rem;height:2.75rem;background:#FEF3C7;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:0.62rem;font-weight:700;color:#B45309;letter-spacing:0.04em;flex-shrink:0;">CV</div>
+            <div>
+              <div style="font-size:0.83rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;">Canva AI</div>
+              <div style="font-size:0.76rem;color:var(--ink2);line-height:1.55;">Magic Design tạo sơ đồ minh họa và infographic cho báo cáo</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;padding-left:0.5rem;">
+              <div style="font-family:var(--f-dis);font-size:1.5rem;font-weight:600;color:rgba(180,83,9,0.18);line-height:1;">4</div>
+              <div style="font-family:var(--f-mono);font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">hình</div>
+            </div>
+          </div>
+
+          <!-- LanguageTool -->
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.125rem 1.25rem;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:2.75rem 1fr auto;gap:0.875rem;align-items:center;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
+            <div style="width:2.75rem;height:2.75rem;background:#DCFCE7;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:0.62rem;font-weight:700;color:#15803D;letter-spacing:0.04em;flex-shrink:0;">LT</div>
+            <div>
+              <div style="font-size:0.83rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;">LanguageTool</div>
+              <div style="font-size:0.76rem;color:var(--ink2);line-height:1.55;">Kiểm tra ngữ pháp, chỉnh sửa văn phong toàn bài báo cáo</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;padding-left:0.5rem;">
+              <div style="font-family:var(--f-dis);font-size:1.5rem;font-weight:600;color:rgba(21,128,61,0.18);line-height:1;">2×</div>
+              <div style="font-family:var(--f-mono);font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">lượt</div>
+            </div>
+          </div>
+
+          <!-- DALL·E 3 -->
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.125rem 1.25rem;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:2.75rem 1fr auto;gap:0.875rem;align-items:center;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
+            <div style="width:2.75rem;height:2.75rem;background:#DBEAFE;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:0.62rem;font-weight:700;color:#2563EB;letter-spacing:0.04em;flex-shrink:0;">DE</div>
+            <div>
+              <div style="font-size:0.83rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;">DALL·E 3</div>
+              <div style="font-size:0.76rem;color:var(--ink2);line-height:1.55;">Tạo hình minh họa đặc thù cho từng phần nội dung</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;padding-left:0.5rem;">
+              <div style="font-family:var(--f-dis);font-size:1.5rem;font-weight:600;color:rgba(37,99,235,0.18);line-height:1;">4</div>
+              <div style="font-family:var(--f-mono);font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);">ảnh</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <p class="sub-label">Quy trình sản xuất từng bước</p>
+    <div class="card" style="padding-top:1.25rem;padding-bottom:1.25rem;">
+      <div class="proc-step">
+        <div class="ps-n">1</div>
+        <div><div class="ps-t">Ideation — Lên ý tưởng</div><div class="ps-d">Dùng Claude AI brainstorm 5 góc nhìn về "AI trong giáo dục đại học". Chọn góc độ thực tiễn: phân tích tác động, lợi ích và thách thức của AI đối với sinh viên UET.</div><div class="ps-tools"><span class="ps-tool">Claude AI</span></div></div>
+      </div>
+      <div class="proc-step">
+        <div class="ps-n">2</div>
+        <div><div class="ps-t">Outlining — Xây dựng dàn ý</div><div class="ps-d">Dùng Claude AI tạo dàn ý chi tiết 5 chương theo cấu trúc báo cáo học thuật. Cả nhóm thảo luận và chỉnh sửa dàn ý trên Google Docs cho đến khi thống nhất.</div><div class="ps-tools"><span class="ps-tool">Claude AI</span><span class="ps-tool">Google Docs</span></div></div>
+      </div>
+      <div class="proc-step">
+        <div class="ps-n">3</div>
+        <div><div class="ps-t">Writing — Viết nội dung chính</div><div class="ps-d">Dùng Claude AI viết draft từng chương theo framework RCES. Chỉnh sửa tay để thêm ví dụ từ thực tế Việt Nam và giọng văn học thuật nhất quán trong toàn bài.</div><div class="ps-tools"><span class="ps-tool">Claude AI</span><span class="ps-tool">Google Docs</span></div></div>
+      </div>
+      <div class="proc-step">
+        <div class="ps-n">4</div>
+        <div><div class="ps-t">Visual Design — Thiết kế hình ảnh</div><div class="ps-d">Canva AI tạo sơ đồ quy trình và infographic minh họa cho các phần phân tích. DALL·E 3 tạo hình ảnh khái niệm đặc thù không tìm được trên nguồn ảnh thông thường.</div><div class="ps-tools"><span class="ps-tool">Canva AI</span><span class="ps-tool">DALL·E 3</span></div></div>
+      </div>
+      <div class="proc-step" style="border-bottom:none;">
+        <div class="ps-n">5</div>
+        <div><div class="ps-t">Editing & Export — Chỉnh sửa và xuất bài</div><div class="ps-d">LanguageTool kiểm tra toàn bộ lỗi ngữ pháp và chính tả. Định dạng theo chuẩn trình bày của môn học, chèn hình ảnh và bảng biểu, xuất file DOCX → PDF và nộp qua Google Classroom.</div><div class="ps-tools"><span class="ps-tool">LanguageTool</span><span class="ps-tool">Google Classroom</span></div></div>
+      </div>
+    </div>
+    <!-- ── Sản phẩm cuối ── -->
+    <div class="product-link-block">
+      <div class="plb-label">Sản phẩm cuối</div>
+      <a href="https://docs.google.com/document/d/1q7OieKbl116Ny62ujZb_pICbojGsbDxa/edit?usp=sharing&ouid=107321358617148181288&rtpof=true&sd=true" class="plb-link" target="_blank" rel="noopener">
+        <span class="plb-icon">↗</span>
+        <span class="plb-text">Xem sản phẩm</span>
+      </a>
+    </div>
+
+    <div class="panel-nav">
+      <button class="panel-nav-btn" onclick="sw(3)">← Bài 4</button>
+      <span class="panel-nav-info">Bài 5 / 6</span>
+      <button class="panel-nav-btn" onclick="sw(5)">Bài 6 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ BÀI 6 ═══════ -->
+  <div class="task-panel" id="tp5">
+    <div class="task-badge">Bài 6 · Bài tập 4 · Mục 6.4</div>
+    <h3 class="task-title">Sử dụng AI Có Trách Nhiệm trong Học tập và Nghiên cứu</h3>
+    <p class="task-obj">Xây dựng bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm, dựa trên nghiên cứu các chính sách và vấn đề đạo đức AI hiện hành.</p>
+
+    <div class="inner-bg" style="margin-bottom:1.5rem;">
+      <p style="font-size:0.875rem;color:var(--ink2);line-height:1.85;">Bộ nguyên tắc được xây dựng sau khi nghiên cứu: <strong>Khuyến nghị Đạo đức AI của UNESCO (2021)</strong>, <strong>EU AI Act framework</strong> và <strong>Chính sách Liêm chính học thuật của UET</strong>. Đây là cam kết cá nhân của mình với tư cách là sinh viên và người dùng AI có trách nhiệm.</p>
+    </div>
+
+    <div class="pn-grid">
+      <div class="pn-card">
+        <div class="pn-num">01</div>
+        <div class="pn-title">Minh bạch về việc sử dụng AI</div>
+        <div class="pn-desc">Luôn ghi chú rõ khi AI hỗ trợ tạo nội dung học thuật — dù viết, phân tích hay dịch thuật. Không trình bày nội dung AI-generated như hoàn toàn là công sức của bản thân.</div>
+        <div class="pn-ref">UNESCO AI Ethics · Nguyên tắc Minh bạch</div>
+      </div>
+      <div class="pn-card">
+        <div class="pn-num">02</div>
+        <div class="pn-title">Tư duy độc lập trước, AI hỗ trợ sau</div>
+        <div class="pn-desc">Không dùng AI như bước đầu tiên. Tự phác thảo ý tưởng trước, rồi mới dùng AI để mở rộng hoặc kiểm tra — không để AI "nghĩ thay" mình trong học tập.</div>
+        <div class="pn-ref">UET Academic Integrity Policy</div>
+      </div>
+      <div class="pn-card">
+        <div class="pn-num">03</div>
+        <div class="pn-title">Kiểm chứng mọi thông tin từ AI</div>
+        <div class="pn-desc">AI có thể "hallucinate" — đưa ra thông tin sai nghe rất thuyết phục. Mọi dữ liệu, số liệu, trích dẫn từ AI đều phải cross-check với ít nhất một nguồn tin cậy.</div>
+        <div class="pn-ref">UNESCO · Nguyên tắc Chính xác và Trung thực</div>
+      </div>
+      <div class="pn-card">
+        <div class="pn-num">04</div>
+        <div class="pn-title">Bảo vệ dữ liệu và quyền riêng tư</div>
+        <div class="pn-desc">Không nhập thông tin cá nhân nhạy cảm vào chatbot AI. Đọc chính sách bảo mật của từng công cụ trước khi sử dụng thường xuyên cho mục đích học tập.</div>
+        <div class="pn-ref">EU AI Act · Bảo vệ Quyền riêng tư</div>
+      </div>
+      <div class="pn-card">
+        <div class="pn-num">05</div>
+        <div class="pn-title">Tôn trọng bản quyền nội dung AI</div>
+        <div class="pn-desc">Không sao chép trực tiếp nội dung AI-generated cho bài nộp mà không chỉnh sửa và ghi rõ nguồn. Hiểu rằng vấn đề bản quyền nội dung AI vẫn là vùng pháp lý xám.</div>
+        <div class="pn-ref">UNESCO · Nguyên tắc Quyền lợi và Công bằng</div>
+      </div>
+      <div class="pn-card">
+        <div class="pn-num">06</div>
+        <div class="pn-title">Nhận biết và phê phán thiên lệch của AI</div>
+        <div class="pn-desc">AI được huấn luyện trên dữ liệu thiên lệch về văn hóa và ngôn ngữ phương Tây. Khi dùng AI cho nội dung về Việt Nam, cần ý thức AI có thể không phản ánh đúng thực tế địa phương.</div>
+        <div class="pn-ref">EU AI Act · AI đáng tin cậy và không thiên lệch</div>
+      </div>
+      <div class="pn-card wide">
+        <div class="pn-num">07</div>
+        <div class="pn-title">Dùng AI để học sâu hơn, không phải để né tránh việc học</div>
+        <div class="pn-desc">Nguyên tắc quan trọng nhất: AI là công cụ để <em>khám phá và mở rộng</em>, không phải để "đáp án thay". Khi dùng AI giải bài tập, mục tiêu là hiểu <em>tại sao</em> AI làm vậy — không phải copy kết quả. Nếu không hiểu giải thích của AI, tức là mình cần học thêm, không phải hỏi lại nhiều hơn. <strong>Thước đo thành công:</strong> sau khi dùng AI, mình có thể tự giải thích lại khái niệm bằng lời mình không?</div>
+        <div class="pn-ref">UET Academic Integrity · Mục tiêu học tập thực chất</div>
+      </div>
+    </div>
+    <div class="panel-nav">
+      <button class="panel-nav-btn" onclick="sw(4)">← Bài 5</button>
+      <span class="panel-nav-info">Bài 6 / 6</span>
+      <button class="panel-nav-btn invisible">Bài tiếp →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 3 — TỔNG KẾT
+══════════════════════════════════════ -->
+<section id="tongket" class="sec alt sec-fade">
+  <div class="sec-eyebrow rv">03 — Tổng kết</div>
+  <h2 class="sec-title rv">Trang Tổng kết</h2>
+
+  <div class="g2">
+    <!-- Cột trái — Cảm nhận -->
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+      <div class="card rv">
+        <div class="ref-block">
+          <h3>Trải nghiệm thực hiện</h3>
+          <p>Đây là lần đầu tiên mình xây dựng một website hoàn chỉnh từ HTML và CSS. Ban đầu nghĩ đây chỉ là bài "lắp ráp" các bài tập nhỏ, nhưng thực ra <strong>quá trình tổng hợp mới chính là bài học lớn nhất</strong>.</p>
+          <p>Khi buộc phải trình bày 6 bài theo một mạch logic thống nhất, mình nhận ra mối liên hệ giữa chúng: quản lý tệp tốt → tìm kiếm hiệu quả → prompt hay → cộng tác trơn tru → nội dung chất lượng → sử dụng có trách nhiệm. Đây là vòng lặp của <strong>công dân số hiệu quả</strong>.</p>
+          <p>Mình cũng nhận ra rằng trình bày nội dung học thuật trên web thú vị và trực quan hơn nhiều so với Word hay PDF — đây là định dạng phù hợp với thời đại số.</p>
+        </div>
+      </div>
+
+      <div class="card rv d1">
+        <div class="ref-block">
+          <h3>Điểm tâm đắc & Thách thức</h3>
+          <p><strong>Tâm đắc nhất — Bài 3 (Prompt Engineering):</strong> Framework RCES không chỉ áp dụng cho AI — nó còn giúp mình giao tiếp rõ ràng hơn với giáo viên, bạn nhóm và cả khi đặt câu hỏi trong lớp.</p>
+          <p><strong>Suy nghĩ nhiều nhất — Bài 6 (AI có trách nhiệm):</strong> Trước đây mình dùng AI khá bừa bãi; sau bài này mình có ý thức hơn về việc kiểm chứng thông tin và không để AI "nghĩ thay" mình.</p>
+          <p><strong>Thách thức lớn nhất — Bài 4 (Hợp tác nhóm):</strong> Phụ thuộc vào tiến độ các thành viên, khó đồng bộ lịch họp. Bài học: cần thiết lập deadline rõ ràng và check-in thường xuyên từ đầu dự án.</p>
+        </div>
+      </div>
+
+      <div class="card rv d2">
+        <p style="font-family:var(--f-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem;">Định hướng tiếp theo</p>
+        <p style="font-size:0.875rem;color:var(--ink2);line-height:1.85;">Mình sẽ tiếp tục cập nhật Portfolio này với các dự án mới trong các năm học tiếp theo — từ bài tập lập trình, đồ án môn học, đến các dự án cá nhân. Mục tiêu dài hạn là có portfolio kỹ thuật số đủ mạnh để <strong>thực tập và xin việc sau tốt nghiệp</strong> từ UET.</p>
+      </div>
+    </div>
+
+    <!-- Cột phải — Top kỹ năng -->
+    <div>
+      <p style="font-family:var(--f-dis);font-size:1.5rem;font-style:italic;color:var(--ink);margin-bottom:1.25rem;" class="rv">Top 3 kỹ năng quan trọng nhất</p>
+
+      <div class="sk-card rv d1">
+        <div class="sk-n">1</div>
+        <div>
+          <div class="sk-t">Prompt Engineering</div>
+          <div class="sk-d">Kỹ năng giao tiếp với AI hiệu quả — không chỉ cho học tập mà còn cho sự nghiệp. Trong tương lai gần, biết cách "hỏi đúng" sẽ quyết định 80% chất lượng output AI mình làm việc cùng.</div>
+        </div>
+      </div>
+
+      <div class="sk-card rv d2">
+        <div class="sk-n">2</div>
+        <div>
+          <div class="sk-t">Đánh giá nguồn thông tin (CRAAP)</div>
+          <div class="sk-d">Trong thời đại fake news và AI hallucination, biết phân biệt nguồn tin đáng tin cậy là kỹ năng sống còn. Tiêu chí CRAAP là công cụ mình sẽ dùng mãi về sau, không chỉ trong học thuật.</div>
+        </div>
+      </div>
+
+      <div class="sk-card rv d3">
+        <div class="sk-n">3</div>
+        <div>
+          <div class="sk-t">Tư duy hệ thống & Tổ chức dữ liệu</div>
+          <div class="sk-d">Biết tổ chức file, quản lý dự án và trình bày thông tin có cấu trúc là nền tảng của mọi nghề trong ngành KHDL. Bài học này bắt đầu từ việc đặt tên file đúng cách.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <span>© 2026 Nguyễn Tiến Thành · MSSV 25024168 · Nhập môn Công nghệ số · UET VNU Hanoi</span>
+</footer>
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+  /* ── Tab switcher ── */
+  function sw(i) {
+    document.querySelectorAll('.tab-btn').forEach((b, j) => b.classList.toggle('on', j === i));
+    document.querySelectorAll('.task-panel').forEach((p, j) => p.classList.toggle('on', j === i));
+    const rect = document.getElementById('baitap').getBoundingClientRect();
+    // Chỉ scroll khi section hoàn toàn nằm ngoài viewport (chưa đến hoặc đã qua)
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!inView) {
+      window.scrollTo({ top: rect.top + window.scrollY - 80, behavior: 'smooth' });
+    }
+  }
+
+  /* ── Scroll reveal ── */
+  const ro = new IntersectionObserver(
+    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('show')),
+    { threshold: 0.07, rootMargin: '0px 0px -20px 0px' }
+  );
+  document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+  /* ── Active nav ── */
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  const no = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting)
+        links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { threshold: 0.4 });
+  secs.forEach(s => no.observe(s));
+
+  /* ── Section fade-in on scroll ── */
+  const sfObs = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        sfObs.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.04, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.sec-fade').forEach(el => sfObs.observe(el));
+
+  /* ════════════════════════════════════════
+     1. WATER-DROP RIPPLE SPLASH SCREEN
+  ════════════════════════════════════════ */
+  (function() {
+    const overlay = document.getElementById('drop-overlay');
+    const canvas  = document.getElementById('drop-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+
+    const W = canvas.width, H = canvas.height;
+    const cx = W / 2, cy = H / 2;
+    const BG = '#F6F5F1';
+    const RED = '#B83232';
+
+    // Timing (ms)
+    const T_FALL   = 550;   // drop reaches centre
+    const T_HOLD   = 100;   // tiny pause at impact
+    const T_FADE   = 700;   // overlay fade duration
+    const T_START_FADE = T_FALL + T_HOLD + 300; // start fading 300ms after impact
+
+    let startTs = null;
+    let ripplesCreated = false;
+    const ripples = [];  // {birth, speed, maxR, alpha, lw}
+    let overlayAlpha = 1;
+    let done = false;
+
+    function easeIn(t) { return t * t * t; }
+
+    function spawnRipples() {
+      const maxR = Math.hypot(W, H) * 0.75;
+      const now  = performance.now();
+      ripples.push({ birth: now,       speed: 380, maxR: maxR,        alpha: 0.55, lw: 2   });
+      ripples.push({ birth: now + 120, speed: 300, maxR: maxR * 0.78, alpha: 0.4,  lw: 1.5 });
+      ripples.push({ birth: now + 260, speed: 230, maxR: maxR * 0.58, alpha: 0.35, lw: 1.2 });
+      ripples.push({ birth: now + 420, speed: 170, maxR: maxR * 0.4,  alpha: 0.25, lw: 1   });
+    }
+
+    function drawSplash(age) {
+      // Small droplet burst at impact (lasts ~280ms)
+      if (age > 280) return;
+      const t = age / 280;
+      const count = 7;
+      ctx.save();
+      ctx.globalAlpha = overlayAlpha * (1 - t) * 0.85;
+      for (let i = 0; i < count; i++) {
+        const ang  = (i / count) * Math.PI * 2 - Math.PI / 2;
+        const dist = 28 * Math.pow(t, 0.6);
+        const sx   = cx + Math.cos(ang) * dist;
+        const sy   = cy + Math.sin(ang) * dist * 0.35; // flatten vertically
+        const r    = 2.5 * (1 - t * 0.6);
+        ctx.beginPath();
+        ctx.arc(sx, sy, r, 0, Math.PI * 2);
+        ctx.fillStyle = RED;
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    function frame(ts) {
+      if (done) return;
+      if (!startTs) startTs = ts;
+      const elapsed = ts - startTs;
+
+      /* — clear & fill bg — */
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalAlpha = overlayAlpha;
+      ctx.fillStyle = BG;
+      ctx.fillRect(0, 0, W, H);
+      ctx.globalAlpha = 1;
+
+      /* — falling drop — */
+      if (elapsed < T_FALL) {
+        const t = elapsed / T_FALL;
+        const e = easeIn(t);
+        const dropY = -18 + (cy + 18) * e;
+        const dropR  = 5;
+        // Teardrop: larger tail trailing up
+        ctx.save();
+        ctx.globalAlpha = overlayAlpha;
+        ctx.beginPath();
+        ctx.arc(cx, dropY, dropR, 0, Math.PI * 2);
+        ctx.fillStyle = RED;
+        ctx.fill();
+        // Tail
+        ctx.beginPath();
+        ctx.moveTo(cx - 2.5, dropY - dropR);
+        ctx.quadraticCurveTo(cx, dropY - dropR - 14, cx + 2.5, dropY - dropR);
+        ctx.fillStyle = RED;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      /* — impact moment — */
+      if (elapsed >= T_FALL && !ripplesCreated) {
+        ripplesCreated = true;
+        spawnRipples();
+      }
+
+      /* — ripples — */
+      if (ripplesCreated) {
+        const now = performance.now();
+        ripples.forEach(rp => {
+          const age = now - rp.birth;
+          if (age < 0) return;
+          const r = (age / 1000) * rp.speed;
+          if (r >= rp.maxR) return;
+          const a = rp.alpha * Math.pow(1 - r / rp.maxR, 0.5);
+          ctx.save();
+          ctx.globalAlpha = a * overlayAlpha;
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = RED;
+          ctx.lineWidth = rp.lw;
+          ctx.stroke();
+          ctx.restore();
+        });
+
+        /* — splash burst — */
+        if (elapsed >= T_FALL) {
+          drawSplash(elapsed - T_FALL);
+        }
+
+        /* — fade overlay — */
+        if (elapsed >= T_START_FADE) {
+          const fadeProgress = Math.min((elapsed - T_START_FADE) / T_FADE, 1);
+          overlayAlpha = 1 - fadeProgress;
+          if (overlayAlpha <= 0) {
+            done = true;
+            overlay.style.display = 'none';
+            return;
+          }
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  })();
+
+
+  /* ════════════════════════════════════════
+     2. SCROLL PROGRESS BAR
+  ════════════════════════════════════════ */
+  (function() {
+    const bar = document.getElementById('scroll-bar');
+    if (!bar) return;
+    window.addEventListener('scroll', () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+      bar.style.width = pct + '%';
+    }, { passive: true });
+  })();
+
+
+  /* ════════════════════════════════════════
+     4. BACK TO TOP
+  ════════════════════════════════════════ */
+  (function() {
+    const btn = document.getElementById('back-top');
+    if (!btn) return;
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+  })();
+
+
+  /* ════════════════════════════════════════
+     5. 3D CARD TILT ON HOVER
+  ════════════════════════════════════════ */
+  (function() {
+    const TILT = 5; // max degrees
+    document.querySelectorAll('.card, .card-sm').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r  = card.getBoundingClientRect();
+        const x  = (e.clientX - r.left) / r.width  - 0.5;
+        const y  = (e.clientY - r.top)  / r.height - 0.5;
+        card.style.transform    = `perspective(900px) rotateX(${-y*TILT}deg) rotateY(${x*TILT}deg) translateY(-3px)`;
+        card.style.boxShadow    = `${-x*12}px ${y*12}px 24px rgba(0,0,0,0.11)`;
+        card.style.transition   = 'box-shadow .15s ease, transform .08s ease';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform  = '';
+        card.style.boxShadow  = '';
+        card.style.transition = 'transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease';
+      });
+    });
+  })();
+
+
+  /* ════════════════════════════════════════
+     6. TAB RIPPLE CLICK EFFECT
+  ════════════════════════════════════════ */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const r    = this.getBoundingClientRect();
+      const size = Math.max(r.width, r.height);
+      const x    = e.clientX - r.left - size / 2;
+      const y    = e.clientY - r.top  - size / 2;
+      const rip  = document.createElement('span');
+      rip.className = 'tab-ripple';
+      rip.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+      this.appendChild(rip);
+      setTimeout(() => rip.remove(), 600);
+    });
+  });
+
+
+  /* ════════════════════════════════════════
+     7. MSSV NUMBER COUNT-UP
+  ════════════════════════════════════════ */
+  (function() {
+    const el = document.querySelector('.info-value');  // first info-value = MSSV
+    if (!el) return;
+    const target = 25024168;
+    const duration = 1800; // ms
+    const start = performance.now();
+    // Only run when element becomes visible
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        obs.disconnect();
+        function tick(now) {
+          const t = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.floor(ease * target).toString().padStart(8,'0');
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = '25024168';
+        }
+        // delay until after splash finishes
+        setTimeout(() => requestAnimationFrame(tick), 2200);
+      });
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  })();
+
+
+  /* ════════════════════════════════════════
+     8. PRINCIPLE CARDS STAGGER REVEAL
+  ════════════════════════════════════════ */
+  (function() {
+    const pnObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const cards = e.target.querySelectorAll('.pn-card');
+          cards.forEach((c, i) => {
+            setTimeout(() => c.classList.add('pn-show'), i * 90);
+          });
+          pnObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.pn-grid').forEach(g => pnObs.observe(g));
+  })();
+
+
+  /* ════════════════════════════════════════
+     9. INTERACTIVE RIPPLE ON CLICK (anywhere)
+  ════════════════════════════════════════ */
+  (function() {
+    document.addEventListener('click', e => {
+      // Small ambient ripple on page clicks (not on buttons — those have own effect)
+      if (e.target.closest('.tab-btn, .btn, button')) return;
+      const rip = document.createElement('div');
+      rip.style.cssText = `
+        position:fixed;
+        left:${e.clientX}px;top:${e.clientY}px;
+        width:1px;height:1px;
+        border-radius:50%;
+        border:1.5px solid rgba(184,50,50,0.35);
+        transform:translate(-50%,-50%) scale(0);
+        animation:ambientRipple .7s ease-out forwards;
+        pointer-events:none;z-index:9996;
+      `;
+      document.body.appendChild(rip);
+      setTimeout(() => rip.remove(), 750);
+    });
+
+    // Inject keyframes dynamically once
+    if (!document.getElementById('ambient-style')) {
+      const s = document.createElement('style');
+      s.id = 'ambient-style';
+      s.textContent = `@keyframes ambientRipple {
+        to { transform:translate(-50%,-50%) scale(80); opacity:0; }
+      }`;
+      document.head.appendChild(s);
+    }
+  })();
+
+</script>
+</body>
+</html>
